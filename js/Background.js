@@ -5,7 +5,7 @@ export default class Background {
     this.img = config.img;
 
     this.height = App.height;
-    this.width = this.height * (this.img.width / this.img.height);
+    this.width = this.height * (this.img.width / this.img.height); // a:b=c:d
 
     this.leftPos = { x: 0, y: 0 }; // bg1 시작점
     this.rightPos = { x: this.width - 4, y: 0 }; // bg2 시작점 (png 여백 때문에 -4)

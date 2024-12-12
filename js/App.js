@@ -1,4 +1,5 @@
 import Background from "./Background.js";
+import Wall from "./Wall.js";
 
 export default class App {
   static canvas = document.querySelector("canvas");
@@ -15,6 +16,8 @@ export default class App {
       new Background({ img: document.querySelector("#bg2-img"), speed: -2 }),
       new Background({ img: document.querySelector("#bg1-img"), speed: -4 }), // 맨앞
     ];
+
+    this.walls = [new Wall({ type: "SMALL" })];
 
     window.addEventListener("resize", this.resize.bind(this));
   }
@@ -51,6 +54,12 @@ export default class App {
       this.backgrounds.forEach((background) => {
         background.update();
         background.draw();
+      });
+
+      // 벽 그리기
+      this.walls.forEach((wall) => {
+        wall.update();
+        wall.draw();
       });
 
       then = now - (delta % App.interval);
