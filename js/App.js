@@ -1,3 +1,5 @@
+import Background from "./Background.js";
+
 export default class App {
   static canvas = document.querySelector("canvas");
   static ctx = App.canvas.getContext("2d");
@@ -8,6 +10,12 @@ export default class App {
   static height = 768;
 
   constructor() {
+    this.backgrounds = [
+      new Background({ img: document.querySelector("#bg3-img"), speed: -1 }), // 맨뒤
+      new Background({ img: document.querySelector("#bg2-img"), speed: -2 }),
+      new Background({ img: document.querySelector("#bg1-img"), speed: -4 }), // 맨앞
+    ];
+
     window.addEventListener("resize", this.resize.bind(this));
   }
 
@@ -36,8 +44,14 @@ export default class App {
         return;
       }
 
+      // 화면 지우기
       App.ctx.clearRect(0, 0, App.width, App.height);
-      App.ctx.fillRect(50, 50, 100, 100);
+
+      // 배경 그리기
+      this.backgrounds.forEach((background) => {
+        background.update();
+        background.draw();
+      });
 
       then = now - (delta % App.interval);
     };
