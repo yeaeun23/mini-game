@@ -57,10 +57,22 @@ export default class App {
       });
 
       // 벽 그리기
-      this.walls.forEach((wall) => {
-        wall.update();
-        wall.draw();
-      });
+      for (let i = this.walls.length - 1; i >= 0; i--) {
+        this.walls[i].update();
+        this.walls[i].draw();
+
+        // 사라진 벽 지우기
+        if (this.walls[i].isOutside) {
+          this.walls.splice(i, 1);
+          continue;
+        }
+
+        // 다음 벽 생성
+        if (this.walls[i].canGenerateNext) {
+          this.walls[i].generateNext = true;
+          this.walls.push(new Wall({ type: Math.random() > 0.3 ? "SMALL" : "BIG" }));
+        }
+      }
 
       then = now - (delta % App.interval);
     };

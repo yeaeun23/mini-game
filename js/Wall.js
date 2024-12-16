@@ -1,4 +1,5 @@
 import App from "./App.js";
+import { randomNumBetween } from "./utils.js";
 
 export default class Wall {
   constructor(config) {
@@ -17,11 +18,38 @@ export default class Wall {
         break;
     }
 
+    // 벽 크기
     this.height = App.height;
     this.width = this.height * this.sizeX;
+
+    // 위아래 벽 간격
+    this.gapY = randomNumBetween(App.height * 0.2, App.height * 0.35);
+    // 위아래 벽 X좌표
+    this.x = App.width;
+    // 위벽 Y좌표의 최소값: - this.height
+    // 위벽 Y좌표의 최대값: App.height - this.gapY - this.height
+    this.y1 = randomNumBetween(30, App.height - this.gapY - 30) - this.height; // png 여백 때문에 30
+    // 아래벽 Y좌표
+    this.y2 = this.y1 + this.height + this.gapY;
+
+    // 다음 벽 생성여부
+    this.generateNext = false;
+    // 좌우 벽 간격
+    this.gapNextX = App.width * randomNumBetween(0.6, 0.75);
   }
 
-  update() {}
+  get isOutside() {
+    return this.x + this.width < 0;
+  }
+
+  get canGenerateNext() {
+    return !this.generateNext && this.x + this.width < this.gapNextX;
+  }
+
+  update() {
+    // 벽 이동
+    this.x -= 6;
+  }
 
   draw() {
     App.ctx.drawImage(
@@ -30,8 +58,20 @@ export default class Wall {
       0,
       this.img.width * this.sizeX,
       this.img.height,
+      this.x,
+      this.y1,
+      this.width,
+      this.height
+    );
+
+    App.ctx.drawImage(
+      this.img,
+      this.sx,
       0,
-      0,
+      this.img.width * this.sizeX,
+      this.img.height,
+      this.x,
+      this.y2,
       this.width,
       this.height
     );
