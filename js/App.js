@@ -73,6 +73,13 @@ export default class App {
           this.walls[i].generateNext = true;
           this.walls.push(new Wall({ type: Math.random() > 0.3 ? "SMALL" : "BIG" }));
         }
+
+        // 벽과 새 충돌 감지
+        if (this.walls[i].isColliding(this.player.boundingBox)) {
+          this.player.boundingBox.color = `rgba(255, 0, 0, 0.3)`;
+        } else {
+          this.player.boundingBox.color = `rgba(0, 0, 255, 0.3)`;
+        }
       }
 
       // 새 그리기
