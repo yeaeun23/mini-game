@@ -1,4 +1,5 @@
 import Background from "./Background.js";
+import Coin from "./Coin.js";
 import Player from "./Player.js";
 import Wall from "./Wall.js";
 
@@ -19,6 +20,7 @@ export default class App {
     ];
     this.walls = [new Wall({ type: "SMALL" })];
     this.player = new Player();
+    this.coins = [];
 
     window.addEventListener("resize", this.resize.bind(this));
   }
@@ -71,7 +73,17 @@ export default class App {
         // 다음 벽 생성
         if (this.walls[i].canGenerateNext) {
           this.walls[i].generateNext = true;
-          this.walls.push(new Wall({ type: Math.random() > 0.3 ? "SMALL" : "BIG" }));
+
+          const newWall = new Wall({ type: Math.random() > 0.3 ? "SMALL" : "BIG" });
+          this.walls.push(newWall);
+
+          // 코인 생성
+          if (Math.random() < 0.5) {
+            const x = newWall.x + newWall.width / 2;
+            const y = newWall.y2 - newWall.gapY / 2;
+
+            this.coins.push(new Coin(x, y));
+          }
         }
 
         // 벽과 새 충돌 감지
@@ -85,6 +97,17 @@ export default class App {
       // 새 그리기
       this.player.update();
       this.player.draw();
+
+      // 코인 그리기
+      for (let i = this.coins.length - 1; i >= 0; i--) {
+        this.coins[i].update();
+        this.coins[i].draw();
+
+        // 사라진 코인 지우기
+        if (this.coins[i].x + this.coins[i].width <= 0) {
+          this.coins.splice(i, 1);
+        }
+      }
 
       then = now - (delta % App.interval);
     };
