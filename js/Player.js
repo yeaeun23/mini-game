@@ -14,13 +14,24 @@ export default class Player {
 
     this.counter = 0;
     this.frameX = 0;
+
+    this.vy = -10;
+    this.gravity = 0.3;
+
+    App.canvas.addEventListener("click", () => {
+      this.vy -= 5;
+    });
   }
 
   update() {
-    // 스프라이트 속도 조절
+    // 스프라이트 이미지 조절
     if (++this.counter % 2 === 0) {
       this.frameX = ++this.frameX % 15;
     }
+
+    // 새 떨어지게(중력)
+    this.vy += this.gravity;
+    this.y += this.vy;
   }
 
   draw() {
