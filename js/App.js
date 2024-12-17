@@ -1,4 +1,5 @@
 import Background from "./Background.js";
+import Player from "./Player.js";
 import Wall from "./Wall.js";
 
 export default class App {
@@ -16,8 +17,8 @@ export default class App {
       new Background({ img: document.querySelector("#bg2-img"), speed: -2 }),
       new Background({ img: document.querySelector("#bg1-img"), speed: -4 }), // 맨앞
     ];
-
     this.walls = [new Wall({ type: "SMALL" })];
+    this.player = new Player();
 
     window.addEventListener("resize", this.resize.bind(this));
   }
@@ -73,6 +74,10 @@ export default class App {
           this.walls.push(new Wall({ type: Math.random() > 0.3 ? "SMALL" : "BIG" }));
         }
       }
+
+      // 새 그리기
+      this.player.update();
+      this.player.draw();
 
       then = now - (delta % App.interval);
     };
