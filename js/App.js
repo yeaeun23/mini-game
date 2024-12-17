@@ -106,6 +106,15 @@ export default class App {
         // 사라진 코인 지우기
         if (this.coins[i].x + this.coins[i].width <= 0) {
           this.coins.splice(i, 1);
+          continue;
+        }
+
+        // 코인과 새 충돌 감지
+        if (this.coins[i].boundingBox.isColliding(this.player.boundingBox)) {
+          console.log("코인과 충돌!");
+
+          // 충돌한 코인 지우기
+          this.coins.splice(i, 1);
         }
       }
 

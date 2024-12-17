@@ -5,13 +5,13 @@ export default class Player {
   constructor() {
     this.img = document.querySelector("#bird-img");
 
-    // 새 좌표
-    this.x = App.width * 0.1;
-    this.y = App.width * 0.5;
-
     // 새 크기 (스프라이트 이미지: 2096*96, 15개)
     this.width = 130;
     this.height = this.width * (96 / 140); // 2096÷15=140
+
+    // 새 좌표
+    this.x = App.width * 0.1;
+    this.y = App.width * 0.5;
 
     // 충돌 감지용 박스 생성
     this.boundingBox = new BoundingBox(this.x + 10, this.y + 16, this.width - 20, this.height - 20);
@@ -52,6 +52,6 @@ export default class Player {
       this.height
     );
 
-    this.boundingBox.draw();
+    // this.boundingBox.draw();
   }
 }
