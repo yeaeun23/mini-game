@@ -1,6 +1,7 @@
 import Background from "./Background.js";
 import Coin from "./Coin.js";
 import Player from "./Player.js";
+import Score from "./Score.js";
 import Wall from "./Wall.js";
 
 export default class App {
@@ -21,6 +22,7 @@ export default class App {
     this.walls = [new Wall({ type: "SMALL" })];
     this.player = new Player();
     this.coins = [];
+    this.score = new Score();
 
     window.addEventListener("resize", this.resize.bind(this));
   }
@@ -111,12 +113,16 @@ export default class App {
 
         // 코인과 새 충돌 감지
         if (this.coins[i].boundingBox.isColliding(this.player.boundingBox)) {
-          console.log("코인과 충돌!");
+          this.score.coinCount += 1;
 
           // 충돌한 코인 지우기
           this.coins.splice(i, 1);
         }
       }
+
+      // 점수 그리기
+      this.score.update();
+      this.score.draw();
 
       then = now - (delta % App.interval);
     };
