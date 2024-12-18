@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>미니게임</title>
     <link rel="stylesheet" href="./style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
@@ -25,7 +31,23 @@
     <!-- 코인 이미지 -->
     <img src="./assets/coin.png" id="coin-img" class="asset-img" />
 
-    <canvas></canvas>
+    <main>
+      <!-- 준비 화면 -->
+      <section class="ready-screen">
+        <img src="./assets/title.png" class="title-img" />
+        <img src="./assets/play.svg" class="play-img" />
+      </section>
+
+      <!-- 종료 화면 -->
+      <section class="finish-screen">
+        <div class="distance">0m</div>
+        <div class="coin">0 coin</div>
+        <img src="./assets/replay.svg" class="replay-img" />
+      </section>
+
+      <canvas></canvas>
+    </main>
+
     <script type="module" src="./index.js"></script>
   </body>
 </html>
