@@ -46,6 +46,6 @@
     * https://fonts.google.com/selection?query=jua
 <br/><br/>
 
-* <b>CSS 애니메이션 Lib - GSAP</b>
-    * https://cdnjs.com/libraries/gsap
-    * https://gsap.com/docs/v3/Eases/
+* <b>패스트캠퍼스 - '인터랙티브 웹 완전 정복' 온라인 강의 실습</b>
+    * https://fastcampus.co.kr/b2g_kdc_webmotion
+<br/><br/>
