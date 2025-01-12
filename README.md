@@ -2,6 +2,8 @@
 
 ## Demo
 * https://yeaeun23.github.io/mini-game/
+<br/><br/>
+![ezgif-1-4153241b29](https://github.com/user-attachments/assets/92f46527-c331-47a8-9081-1803ce702538)
 <br/>
 
 ## Preview
