@@ -1,4 +1,4 @@
-# 미니 게임 '벌레날다'
+# mini-game
 
 ## Demo
 * https://yeaeun23.github.io/mini-game/
