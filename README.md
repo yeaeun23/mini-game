@@ -43,6 +43,10 @@
    ![coin](https://github.com/user-attachments/assets/e0690360-5eb4-44eb-9dad-5e23931d93f1)
 <br/><br/>
 
+* <b>gsap CDN</b>
+    * https://cdnjs.com/libraries/gsap
+<br/><br/>
+
 * <b>구글 폰트 - Jua</b>
     * https://fonts.google.com/
     * https://fonts.google.com/selection?query=jua
